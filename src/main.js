@@ -32,6 +32,7 @@ let lightbox = new SimpleLightbox('.gallery a', {
 let tags = '';
 let page = 1;
 let images;
+let quantityPages;
 const perPage = 15;
 
 const onForm = async event => {
@@ -51,6 +52,8 @@ const onForm = async event => {
 
   try {
     images = await fetchData(tags, page);
+    quantityPages = Math.ceil(images.total / perPage);
+
     if (images.hits.length === 0) {
       iziToast.show({
         message:
@@ -60,7 +63,7 @@ const onForm = async event => {
       return;
     }
 
-    if (images.hits.length < 15) {
+    if (quantityPages <= 1) {
       showMoreBtn.classList.add('visually-hidden');
     } else {
       showMoreBtn.classList.remove('visually-hidden');
