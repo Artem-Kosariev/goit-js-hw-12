@@ -100,7 +100,9 @@ const onBtn = async () => {
 
     if (images.total <= Math.ceil(page * perPage)) {
       showMoreBtn.classList.add('visually-hidden');
-      showMessage("We're sorry, but you've reached the end of search results.");
+      iziToast.show({
+        message: "We're sorry, but you've reached the end of search results.",
+      });
     } else {
       showMoreBtn.classList.remove('visually-hidden');
     }
