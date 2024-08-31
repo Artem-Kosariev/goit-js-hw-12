@@ -51,8 +51,6 @@ const onForm = async event => {
 
   try {
     images = await fetchData(tags, page);
-    quantityPages = Math.ceil(images.total / perPage);
-
     if (images.hits.length === 0) {
       iziToast.show({
         message:
@@ -62,7 +60,7 @@ const onForm = async event => {
       return;
     }
 
-    if (quantityPages <= 1) {
+    if (images.hits.length <= 15) {
       showMoreBtn.classList.add('visually-hidden');
     } else {
       showMoreBtn.classList.remove('visually-hidden');
