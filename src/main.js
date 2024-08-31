@@ -32,7 +32,6 @@ let lightbox = new SimpleLightbox('.gallery a', {
 let tags = '';
 let page = 1;
 let images;
-let quantityPages;
 const perPage = 15;
 
 const onForm = async event => {
@@ -48,6 +47,7 @@ const onForm = async event => {
   gallery.innerHTML = '';
   page = 1;
   loader.classList.remove('visually-hidden');
+  showMoreBtn.classList.add('visually-hidden');
 
   try {
     images = await fetchData(tags, page);
@@ -60,7 +60,7 @@ const onForm = async event => {
       return;
     }
 
-    if (images.hits.length <= 15) {
+    if (images.hits.length < 15) {
       showMoreBtn.classList.add('visually-hidden');
     } else {
       showMoreBtn.classList.remove('visually-hidden');
