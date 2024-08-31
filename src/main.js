@@ -62,7 +62,7 @@ const onForm = async event => {
       return;
     }
 
-    if (quantityPages < 1) {
+    if (quantityPages <= 1) {
       showMoreBtn.classList.add('visually-hidden');
     } else {
       showMoreBtn.classList.remove('visually-hidden');
